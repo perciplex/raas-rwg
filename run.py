@@ -21,8 +21,24 @@ def get_action(input_vec):
 
 env_name = 'raaspendulum-v0'
 env = gym.make(env_name)
-obs = env._get_obs()
 
+
+# Move it away from the bottom
+n_steps = 50
+DT = 0.05
+max_torque = 1.2
+w = 4.5
+for t in range(n_steps):
+    phase = np.sin(w * t * DT)
+    if phase > 0:
+        mult = 1.0
+    else:
+        mult = -1.0
+    action = mult * max_torque
+    #action = phase * max_torque
+    observation, reward, done, info = env.step([action])
+
+# Run ep
 obs = env._get_obs()
 score = 0
 steps = 0
