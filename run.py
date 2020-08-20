@@ -19,7 +19,7 @@ def get_action(input_vec):
     x *= 2.0
     return x
 
-env_name = 'raaspendulum-v0'
+env_name = 'RaasPendulum-v0'
 env = gym.make(env_name)
 
 
